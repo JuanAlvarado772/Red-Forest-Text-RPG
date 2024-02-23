@@ -4,5 +4,6 @@ const game = document.getElementById('game');
 
 newgame.addEventListener('click', function() {
   startscreen.classList.toggle('hide')
+  game.style.display = "block";
 });
 
