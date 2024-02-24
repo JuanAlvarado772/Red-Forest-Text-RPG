@@ -48,12 +48,11 @@ html {
 .startscreen {
 min-width: 100vw;
 min-height: 100vh;
-background-image: url('data:image/svg+xml,<svg id="visual" viewBox="0 0 900 600" width="900" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><rect x="0" y="0" width="900" height="600" fill="%23001220"></rect><defs><linearGradient id="grad1_0" x1="33.3%" y1="0%" x2="100%" y2="100%"><stop offset="20%" stop-color="%23fbae3c" stop-opacity="1"></stop><stop offset="80%" stop-color="%23fbae3c" stop-opacity="1"></stop></linearGradient></defs><defs><linearGradient id="grad1_1" x1="33.3%" y1="0%" x2="100%" y2="100%"><stop offset="20%" stop-color="%23fbae3c" stop-opacity="1"></stop><stop offset="80%" stop-color="%23e1685e" stop-opacity="1"></stop></linearGradient></defs><defs><linearGradient id="grad1_2" x1="33.3%" y1="0%" x2="100%" y2="100%"><stop offset="20%" stop-color="%2396446e" stop-opacity="1"></stop><stop offset="80%" stop-color="%23e1685e" stop-opacity="1"></stop></linearGradient></defs><defs><linearGradient id="grad1_3" x1="33.3%" y1="0%" x2="100%" y2="100%"><stop offset="20%" stop-color="%2396446e" stop-opacity="1"></stop><stop offset="80%" stop-color="%233d3056" stop-opacity="1"></stop></linearGradient></defs><defs><linearGradient id="grad1_4" x1="33.3%" y1="0%" x2="100%" y2="100%"><stop offset="20%" stop-color="%23001220" stop-opacity="1"></stop><stop offset="80%" stop-color="%233d3056" stop-opacity="1"></stop></linearGradient></defs><defs><linearGradient id="grad2_0" x1="0%" y1="0%" x2="66.7%" y2="100%"><stop offset="20%" stop-color="%23fbae3c" stop-opacity="1"></stop><stop offset="80%" stop-color="%23fbae3c" stop-opacity="1"></stop></linearGradient></defs><defs><linearGradient id="grad2_1" x1="0%" y1="0%" x2="66.7%" y2="100%"><stop offset="20%" stop-color="%23e1685e" stop-opacity="1"></stop><stop offset="80%" stop-color="%23fbae3c" stop-opacity="1"></stop></linearGradient></defs><defs><linearGradient id="grad2_2" x1="0%" y1="0%" x2="66.7%" y2="100%"><stop offset="20%" stop-color="%23e1685e" stop-opacity="1"></stop><stop offset="80%" stop-color="%2396446e" stop-opacity="1"></stop></linearGradient></defs><defs><linearGradient id="grad2_3" x1="0%" y1="0%" x2="66.7%" y2="100%"><stop offset="20%" stop-color="%233d3056" stop-opacity="1"></stop><stop offset="80%" stop-color="%2396446e" stop-opacity="1"></stop></linearGradient></defs><defs><linearGradient id="grad2_4" x1="0%" y1="0%" x2="66.7%" y2="100%"><stop offset="20%" stop-color="%233d3056" stop-opacity="1"></stop><stop offset="80%" stop-color="%23001220" stop-opacity="1"></stop></linearGradient></defs><g transform="translate(900, 0)"><path d="M0 486.7C-68.6 480.3 -137.2 473.8 -181 437C-224.8 400.2 -243.7 333 -290.6 290.6C-337.5 248.2 -412.4 230.6 -449.7 186.3C-487 142 -486.9 71 -486.7 0L0 0Z" fill="%2318223c"></path><path d="M0 389.4C-54.9 384.2 -109.8 379 -144.8 349.6C-179.8 320.1 -195 266.4 -232.5 232.5C-270 198.6 -329.9 184.5 -359.8 149C-389.6 113.6 -389.5 56.8 -389.4 0L0 0Z" fill="%23683a67"></path><path d="M0 292C-41.2 288.2 -82.3 284.3 -108.6 262.2C-134.9 240.1 -146.2 199.8 -174.4 174.4C-202.5 148.9 -247.4 138.3 -269.8 111.8C-292.2 85.2 -292.1 42.6 -292 0L0 0Z" fill="%23c0526a"></path><path d="M0 194.7C-27.4 192.1 -54.9 189.5 -72.4 174.8C-89.9 160.1 -97.5 133.2 -116.2 116.2C-135 99.3 -164.9 92.2 -179.9 74.5C-194.8 56.8 -194.8 28.4 -194.7 0L0 0Z" fill="%23f6884d"></path><path d="M0 97.3C-13.7 96.1 -27.4 94.8 -36.2 87.4C-45 80 -48.7 66.6 -58.1 58.1C-67.5 49.6 -82.5 46.1 -89.9 37.3C-97.4 28.4 -97.4 14.2 -97.3 0L0 0Z" fill="%23fbae3c"></path></g><g transform="translate(0, 600)"><path d="M0 -486.7C69.6 -486.7 139.2 -486.7 186.3 -449.7C233.4 -412.7 258.1 -338.7 285.7 -285.7C313.3 -232.7 343.9 -200.6 377.9 -156.5C411.9 -112.4 449.3 -56.2 486.7 0L0 0Z" fill="%2318223c"></path><path d="M0 -389.4C55.7 -389.4 111.3 -389.4 149 -359.8C186.7 -330.1 206.4 -270.9 228.5 -228.5C250.6 -186.1 275.1 -160.5 302.3 -125.2C329.5 -89.9 359.4 -45 389.4 0L0 0Z" fill="%23683a67"></path><path d="M0 -292C41.7 -292 83.5 -292 111.8 -269.8C140 -247.6 154.8 -203.2 171.4 -171.4C188 -139.6 206.3 -120.4 226.7 -93.9C247.1 -67.4 269.6 -33.7 292 0L0 0Z" fill="%23c0526a"></path><path d="M0 -194.7C27.8 -194.7 55.7 -194.7 74.5 -179.9C93.4 -165.1 103.2 -135.5 114.3 -114.3C125.3 -93.1 137.5 -80.3 151.1 -62.6C164.7 -45 179.7 -22.5 194.7 0L0 0Z" fill="%23f6884d"></path><path d="M0 -97.3C13.9 -97.3 27.8 -97.3 37.3 -89.9C46.7 -82.5 51.6 -67.7 57.1 -57.1C62.7 -46.5 68.8 -40.1 75.6 -31.3C82.4 -22.5 89.9 -11.2 97.3 0L0 0Z" fill="%23fbae3c"></path></g></svg>');
+  background-image: url('https://lh3.googleusercontent.com/pw/ABLVV85BmXC5cwaO1Lt-5SVZmqzh-C2sjexAqfGfLoeRJR6gUrKAMt51WyFwaislzia_Fkyo6jiJMVkIAQ2O76mmvb3_RDTNXKgEJ8EBTwA7B9rnxc3YVs8=w2400');
 background-size: cover;
 background-repeat: no-repeat;
 display: grid;
 place-items: center;
-display: none;
 }
 
 #newgame {
@@ -66,7 +65,7 @@ font-weight: 500;
 font-style: normal;
 color: #002D62;
 border-radius: 30px 30px;
-background: #DDA0DD;
+background: #white;
 border-bottom: 1rem solid;
 }
 
@@ -79,10 +78,13 @@ min-width: 100vw;
 min-height: 100vh;
 background: rgb(136,156,172);
 color: #000000;
-background-image: url('https://lh3.googleusercontent.com/pw/ABLVV85BmXC5cwaO1Lt-5SVZmqzh-C2sjexAqfGfLoeRJR6gUrKAMt51WyFwaislzia_Fkyo6jiJMVkIAQ2O76mmvb3_RDTNXKgEJ8EBTwA7B9rnxc3YVs8=w2400'); 
+background-image: url('https://lh3.googleusercontent.com/pw/ABLVV85BmXC5cwaO1Lt-5SVZmqzh-C2sjexAqfGfLoeRJR6gUrKAMt51WyFwaislzia_Fkyo6jiJMVkIAQ2O76mmvb3_RDTNXKgEJ8EBTwA7B9rnxc3YVs8=w2400');
+background-size: cover;
+background-repeat: no-repeat;
 display: flex;
 align-items: center;
 justify-content: center;
+display: none;
 } 
 
 .gameimg {
