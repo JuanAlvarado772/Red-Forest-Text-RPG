@@ -17,12 +17,18 @@ let goldValue = 0
 
 
 
-
-btn1.addEventListener('click', function() {
-  btn1.classList.toggle('hide');
+function startstart () {
+  btn1.removeEventListener('click', startstart);
+  btn1.style.display = 'none';
   btn2.style.display = "block";
   btn3.style.display = "block";
   btn4.style.display = "block";
+  btn4.addEventListener('click', desertedCaves)
+  btn3.addEventListener('click', village);
+  btn2.addEventListener('click', ancientForest);
+  btn4.textContent = 'Deserted Caves';
+  btn3.textContent = 'Village';
+  btn2.textContent = 'Ancient Forest';
   text.innerHTML = `<p>
 As Logan ponders his next move, three paths unfold before him: <br /><br />
 
@@ -37,7 +43,9 @@ Travel to the Neighboring Village to offer his skills for hire. While it may not
 <br />
 Each choice carries its own risks and rewards, compelling Logan to weigh his options carefully.</p>`;
   gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/ABLVV84cxCjIJMvFPS3oEfcdoKGcaymmg9T-uj4VZrpZwyNNbvBYvBVDiJg9zqTExYkbptGap__bq25BFxNfkG8BmXjpceGURlBY8ULO_5klOADvlIrKyS0=w2400')"; 
-})
+}
+
+btn1.addEventListener('click', startstart);
 
 function ancientForest () {
   
@@ -64,17 +72,81 @@ function helpKayla () {
 btn2.removeEventListener('click', helpKayla);
 btn3.removeEventListener('click', carryOn);
 btn2.textContent = "Touch the Glowing Rune";
-btn3.textContent = "Examine the Rune Closely";
-text.innerHTML = `In the heart of the Ancient Forest, Logan stands before a mysterious, sealed gateway. Its surface is covered in enigmatic runes, with one in the center glowing more brightly than the rest. As he contemplates his next move to find Kayla's brother, Logan faces a crucial decision with two distinct options:<br /><br />
+btn2.addEventListener('click', glowingRune);
+btn3.style.display = 'none';
+text.innerHTML = `In the heart of the Ancient Forest, Logan stands before a mysterious, sealed gateway. Its surface is covered in enigmatic runes, with one in the center glowing more brightly than the rest. <br /><br />
 
-Touch the Glowing Rune: Feeling a powerful draw towards the glowing rune, Logan considers reaching out to touch it. This direct action could activate the gateway, possibly opening a path or revealing secrets needed to proceed. However, touching the rune might also trigger protective spells or transport him to an unknown location, presenting an immediate and unpredictable risk. <br /><br />
-
-Examine the Rune Closely: Alternatively, Logan thinks about examining the rune closely without making physical contact. By studying its design and the magic it emits, he might uncover a safer way to activate the gateway or even decode a message left by Kayla's brother. This method is time-consuming and requires Logan to tap into his knowledge of arcane symbols, offering a cautious approach that minimizes immediate danger but delays action. <br /><br />
-
-Logan's choice at this moment is critical; it will not only affect his ability to advance through the forest but also determine how he navigates the challenges that lie beyond the gateway. Whether he chooses the boldness of direct contact or the prudence of careful study, his decision will shape the path of his quest to find Kayla's brother.</p>`;
+Touch the Glowing Rune: Feeling a powerful draw towards the glowing rune, Logan considers reaching out to touch it. This direct action could activate the gateway, possibly opening a path or revealing secrets needed to proceed. However, touching the rune might also trigger protective spells or transport him to an unknown location, presenting an immediate and unpredictable risk.
+</p>`;
 
 gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/ABLVV872rwfZ2xPisiglPJ9oqPqgUh0Q4_UM4aqYKAoEdks61SSWizqbS0vMiEu-15LleBnk8wrsOSiBVwfCAKubrRmQO5jAE1KDigV7DCicUaV1D_2sI2Y=w2400')";
 }
+
+function glowingRune () {
+  btn2.removeEventListener('click', glowingRune);
+  btn2.textContent = 'Wealth';
+  btn2.addEventListener('click', wealthend);
+  btn3.style.display = 'block';
+  btn3.textContent = 'Sacrifice and Hope'
+  btn3.addEventListener('click', hope);
+  text.innerHTML = `
+Upon touching the glowing rune, Logan is momentarily blinded by a surge of light. As his vision clears, he sees two distinct paths unfurling before him, each promising a different outcome for his journey:<br /><br />
+
+Path of Endless Wealth: This path leads Logan through a portal shimmering with golden light, where he's promised endless wealth and the resources to save the lighthouse—his family's legacy. The air is thick with the scent of treasure, and visions of gold and jewels dance before his eyes, each step making the promises more tangible. However, a whisper in the wind carries a dire warning: this wealth comes at a cost—the life of Kayla's brother, whose fate is somehow intertwined with the treasures that lie ahead. Choosing this path means securing the future of the lighthouse, but it condemns Kayla's brother to a grim fate. <br /><br />
+
+Path of Sacrifice and Hope: The other path is less inviting, shrouded in mist and uncertainty, but it holds the promise of finding Kayla's brother alive. This route demands resilience and sacrifice from Logan, offering no riches or guarantees, except for the slim hope of saving an innocent life. The path winds deep into the heart of the forest, where ancient magic and perilous trials await, testing his courage and determination to its limits. <br /><br />
+
+Faced with this pivotal decision, Logan stands at the crossroads of destiny, his heart torn between the salvation of his family's legacy and the moral imperative to save a life. The choice he makes now will define his journey and its consequences for those he aims to protect.</p>`;
+
+gameimg.style.backgroundImage = "https://lh3.googleusercontent.com/pw/ABLVV87Tu6xugrXaMWLGeGKjApq1tA6hf-x0gehtTrprI51gRoJ6orB5RT80K3bxgft_X8G3XR6NKNRbQzvnRvSYRLxRSEA1Ujd1sZYV25K49R2x3LCHSFI=w2400')";
+  
+}
+
+function hope () {
+  btn3.removeEventListener('click', hope);
+  btn2.removeEventListener('click', wealthend);
+  btn2.textContent = 'Whispering Winds';
+  btn3.textContent = 'Crimson Moon';
+  btn4.style.display = 'block'
+  btn4.textContent = 'Emerald Dawn';
+  text.innerHTML = `<p>
+In the heart of the Ancient Forest, where fate hangs by a thread, Logan encounters a mystical clearing. Here, three stone pedestals rise from the earth, each inscribed with a riddle that conceals the nature of the path it represents. To proceed, Logan must solve these riddles and choose his path wisely: <br /><br />
+
+Riddle of the Whispering Winds:
+"I speak without a mouth and hear without ears. I bear no fruit, yet I guide the lost. Follow me to where shadows dance, but heed the cost, for strength may wane in my advance." <br /><br />
+
+Riddle of the Crimson Moon:
+"I light the night with blood, not gold. A path so bold, where stories end untold. Through me, the heart beats fast, for my way is cast with risks so vast." <br /><br />
+
+Riddle of the Emerald Dawn:
+"My light is hope in the darkest hours, a path not steeped in power. Through trials and pain, my followers gain, emerging without a bane." <br /><br />
+
+To find Kayla's brother and navigate the perils of the Ancient Forest, Logan must decipher these cryptic messages. His choice will determine the journey ahead, testing his wit and resolve in the face of the forest's ancient magic. </p>`
+
+gameimg.style.backgroundImage = "https://lh3.googleusercontent.com/pw/ABLVV86VxW41RInT6yEh1fZ-tIjhfBI6j1TZmiRFZCzC-4nTmxQkQPY8sMlXtiO3lkZNq7rfBFJbfNkTeC06LFHFi4DBnmOwSDjypOp_6EYAs0tejiB7I_4=w2400')";
+
+}
+
+function wealthend () {
+  btn2.removeEventListener('click', wealthend);
+  btn3.style.display = 'none';
+  text.innerHTML = `
+Choosing the path of wealth, Logan steps into the light, his eyes dazzled by visions of gold and treasures beyond imagination. The path leads him through a landscape that shifts and shimmers, each step weighted with the heavy clink of coins and the whisper of silk. Around him, the air is thick with the scent of opulence, and the very ground seems to sparkle with the promise of endless riches.
+
+But as he ventures further, the light begins to fade, replaced by a creeping darkness that swallows the path behind him. The treasures that once seemed so tangible turn to dust, slipping through his fingers like shadows at dusk. The air grows cold, and a profound silence envelops him, the kind of silence that speaks of endings rather than beginnings.
+
+Logan realizes too late the true cost of his choice. The wealth he sought is an illusion, a mirage that led him not to salvation but to a solitary demise. In his final moments, the forest around him is no longer a place of mystery and magic but a tomb, its ancient trees standing as silent witnesses to his downfall.
+
+The gateway, the source of his fateful journey, remains sealed to the world he left behind. No tale of his end will ever reach Kayla or the lighthouse; he becomes a whisper lost in the wind, a cautionary tale of greed and sacrifice untold. And so, Logan's story concludes not with triumph but with a quiet surrender to the forest's embrace, a stark reminder of the choices that define us and the legacies we leave behind. </p>`;
+health.innerHTML = `<i class="fa-solid fa-heart" style="color: #cd0e47;"></i> 0`;
+btn2.addEventListener('click', endGame);
+btn2.textContent = 'End Game';
+  
+  
+}
+
+
+
 //helpKayla
 
 
@@ -82,6 +154,7 @@ gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/ABLVV
 function carryOn () {
   btn3.removeEventListener('click', carryOn);
   btn2.removeEventListener('click', helpKayla);
+  btn2.addEventListener('click', ventureDeep);
   btn2.textContent = 'Venture Deeper into the Darkness';
   btn3.style.display = 'none';
   text.innerHTML = `<p>
@@ -94,10 +167,45 @@ gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/ABLVV
 }
 
 function ventureDeep () {
+  btn2.textContent = 'End Game';
+  health.innerHTML = `<i class="fa-solid fa-heart" style="color: #cd0e47;"></i> 0`;
+  btn2.removeEventListener('click', ventureDeep);
+  btn2.addEventListener('click', endGame);
+  text.innerHTML = `<p>
+As Logan ventures deeper into the darkness, he finds himself consumed by the oppressive shadows of the Ancient Forest. Without the guidance of the enchanted gateway, he becomes lost in the labyrinthine depths, unable to find his way back. Each step forward leads him further into the unknown, until he is swallowed whole by the darkness, his fate forever sealed within the ancient woods.
+
+With no hope of escape and no one to hear his cries, Logan's journey ends here, lost to the depths of the forest forever. The tales of his bravery and his quest to save the lighthouse fade into obscurity, overshadowed by the grim reality of his untimely demise. And so, the legend of Logan, the valiant adventurer, comes to a tragic end, his fate a cautionary tale of the dangers that lurk within the Ancient Forest's shadowed expanse.</p>`;
+  
+
+gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/ABLVV872edmV3533tXRnSSonnsxcl1M8ORzx2oSX6PDl73Kj878XwrkTm0DIBqSsCKrT6EgiglSpXBe-O117i-FFXHKiff1tvOp5r_gBTWgfSqxDoeNeqLY=w2400')"  
   
 }
 
+function endGame () {
+  btn2.removeEventListener('click', endGame);
+  btn2.style.display = 'none';
+  btn3.style.display = 'none';
+  btn4.style.display = 'none';
+  btn1.style.display = 'block';
+  btn1.textContent = 'Next';
+  health.innerHTML = `<i class="fa-solid fa-heart" style="color: #cd0e47;"></i> 100`;
+  currentHealth = 100;
+  btn1.addEventListener('click', startstart);
+  text.innerHTML = `<p>On the rugged northern coast, where the relentless sea clashes with the sky, the once proud lighthouse that Logan Hartwell and his family called home stands broken and neglected. Severe conditions have ravaged the land, leaving the lighthouse in ruins, and with it, the family's livelihood has crumbled away. Strapped for resources, Logan has been unable to repair the beacon of hope that once guided ships to safety.
 
+The situation grows dire as the kingdom imposes a heavy late tax on the land. Logan faces an ultimatum: pay 5000 gold within a two week time span or watch as the authorities seize the property that has been in his family for generations. With no money to his name and the weight of the future pressing down on him, Logan learns of opportunities for adventure and treasure beyond the familiar shores.
+
+Drawn to the promise of wealth and a chance to save his family's legacy, Logan is poised to venture into the unknown. This new path is fraught with peril, but the potential rewards offer the only glimmer of hope to restore the lighthouse and secure his family's home. This tale of Logan Hartwell is set to become one of courage, sacrifice, and the desperate measures one man will take to protect everything he holds dear.</p>`;
+gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/ABLVV87GMLcC3ZxqLQCThsAljc16DYeVq42vouT3aShe4--RHVbZGj-VJuN7M-4T89lQJTLCuINA46UrLAJjtlK_q2uUyFxsA3z_1r_tPlkh4ZM0YwZZboQ=w2400')"
+
+  currentHealth -= 100;
+  if (currentHealth === 0) {
+    startscreen.classList.toggle('hide')
+    game.style.display = "none";
+    return;
+  }
+  
+}
 
 
 
@@ -155,9 +263,6 @@ gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/ABLVV
 }
 
 
-btn4.addEventListener('click', desertedCaves)
-btn3.addEventListener('click', village);
-btn2.addEventListener('click', ancientForest);
 
 
 
@@ -166,13 +271,6 @@ function penalty () {
   currentHealth = healthValue - Math.floor(Math.random() * 11) + 1;
 }
 
-function endGame () {
-  if (currentHealth === 0) {
-    startscreen.classList.toggle('block')
-    game.style.display = "none";
-    return;
-  }
-}
 
 newgame.addEventListener('click', function() {
   startscreen.classList.toggle('hide')
