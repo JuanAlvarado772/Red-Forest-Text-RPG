@@ -11,6 +11,10 @@ const health = document.getElementById('health');
 let healthValue = 100;
 let currentHealth = 100;
 let goldValue = 0
+let savevillage = false;
+let forestcomplete = false;
+let villagecomplete = false;
+let cavescomplete = false;
  
 
 //set up functions for button2, button3, button4 next story part will have Logan choose three other options.
@@ -106,9 +110,13 @@ function hope () {
   btn3.removeEventListener('click', hope);
   btn2.removeEventListener('click', wealthend);
   btn2.textContent = 'Whispering Winds';
+  btn2.addEventListener('click', whisperingwinds)
   btn3.textContent = 'Crimson Moon';
+  btn3.style.display = 'block'
+  btn3.addEventListener('click', crimsonMoon)
   btn4.style.display = 'block'
   btn4.textContent = 'Emerald Dawn';
+  btn4.addEventListener('click', emerald);
   text.innerHTML = `<p>
 In the heart of the Ancient Forest, where fate hangs by a thread, Logan encounters a mystical clearing. Here, three stone pedestals rise from the earth, each inscribed with a riddle that conceals the nature of the path it represents. To proceed, Logan must solve these riddles and choose his path wisely: <br /><br />
 
@@ -127,6 +135,87 @@ gameimg.style.backgroundImage = "https://lh3.googleusercontent.com/pw/ABLVV86VxW
 
 }
 
+function whisperingwinds () {
+  btn2.removeEventListener('click', whisperingwinds);
+  btn2.style.display = 'none';
+  btn3.textContent = 'Crimson Moon';
+  btn3.addEventListener('click', crimsonMoon)
+  btn4.style.display = 'block'
+  btn4.textContent = 'Emerald Dawn';
+  text.innerHTML = `<p>Logan decides to follow the path of the Whispering Winds, guided by the unseen voices of the forest. As he ventures deeper, the air grows colder, and the light dims, the path becoming increasingly difficult to navigate. The whispers grow louder, urging him on, yet with each step, his energy seems to drain away, sapped by an invisible force. In the densest part of the forest, Logan stumbles upon a hidden grove, where the wind's whispers reveal the location of a crucial artifact needed to save Kayla's brother. However, the journey leaves him weakened, having lost a significant portion of his strength to the forest's enchantment. The artifact turned out to be a hoax, Logan must now find the correct riddle and save Kayla's brother.
+  </p>`;
+  health.innerHTML = `<i class="fa-solid fa-heart" style="color: #cd0e47;"></i> 50`;
+  currentHealth -= 50;
+
+gameimg.style.backgroundImage = "https://lh3.googleusercontent.com/pw/ABLVV867u2t4_6hulCzlmR_ez7H3G_0sp-Knvpg1bHF7U2gs7_1DOC6V31P9wdMHnGM1JNgFONJbnrtzvh1URexJznvYOvnW8IzwVMHL0AaZ7pNVwFLF5vQ=w2400";  
+}
+
+function crimsonMoon () {
+  btn2.style.display = 'block';
+  btn3.removeEventListener('click', crimsonMoon);
+  btn2.textContent = 'End Game';
+  btn3.style.display = 'none';
+  btn4.style.display = 'none'; 
+  btn2.addEventListener('click', endGame)
+  text.innerHTML = `<p>Choosing the path of the Crimson Moon, Logan walks under a sky painted with a blood-red moon, its eerie light casting long shadows. The path is fraught with danger; ferocious beasts and treacherous terrain test Logan's courage and skill. In a dramatic encounter, Logan faces a creature of the night, a guardian of the forest's secrets. The battle is fierce, and though Logan fights valiantly, he is ultimately overwhelmed, his journey ending under the crimson light, a stark reminder of the path's perilous promise.</p>`;
+  health.innerHTML = `<i class="fa-solid fa-heart" style="color: #cd0e47;"></i> 0`
+  currentHealth = 0;    
+}
+
+function emerald() {
+  // Correct the removal of event listeners
+  btn4.removeEventListener('click', emerald);
+  btn3.removeEventListener('click', crimsonMoon);
+  btn2.removeEventListener('click', whisperingwinds);
+
+  // Mark the forest path as complete
+  forestcomplete = true;
+  goldValue += 1500
+
+  // Update the game state based on what's completed
+  updateGameStateV();
+}
+
+function updateGameStateV() {
+  // Hide all buttons by default to reset the state
+  btn2.style.display = 'none';
+  btn3.style.display = 'none';
+  btn4.style.display = 'none';
+
+  // Check which paths have been completed and update the UI accordingly
+  if (!cavescomplete) {
+    btn3.style.display = 'block';
+    btn3.textContent = 'Travel to the Deserted Caves';
+    btn3.addEventListener('click', desertedCaves);
+  }
+
+  if (!villagecomplete) {
+    btn2.style.display = 'block';
+    btn2.textContent = 'Venture to the Nearest Village';
+    btn2.addEventListener('click', village);
+  }
+
+  // If all paths are complete, offer a way to finalize the game
+  if (forestcomplete && cavescomplete && villagecomplete) {
+    btn2.style.display = 'block';
+    btn2.textContent = 'Complete Game';
+    btn2.removeEventListener('click', village); // Make sure to clean up any old listeners
+    btn2.removeEventListener('click', desertedCaves);
+    btn2.addEventListener('click', ending);
+  }
+
+  // Adjust text and image for the next part of the story
+text.innerHTML = `<p>
+Navigating the Emerald Dawn's path, Logan is guided by the first light of dawn through puzzles that challenge yet enlighten him. Along the way, he encounters aids in various forms: lights that guide, herbs that heal, and charms that protect. Each obstacle imparts wisdom and fortifies his resolve. Deep within the forest, he finds Kayla's brother, safe and sound. Together, they make their way out of the forest, emerging at dawn, their spirits lifted by the ordeal they've overcome.
+
+Upon their return, a joyful Kayla awaits, her gratitude immeasurable. In thanks for Logan's bravery and kindness, she rewards him with 1500 gold, a token of her immense appreciation for bringing her brother back safely. One Step closer to restoring the lighthouse.</p>`;
+  
+gold.innerHTML = `<i class="fa-solid fa-coins" style="color: #b7961f;"></i>    ${goldValue}`
+}
+
+
+
+
 function wealthend () {
   btn2.removeEventListener('click', wealthend);
   btn3.style.display = 'none';
@@ -141,8 +230,6 @@ The gateway, the source of his fateful journey, remains sealed to the world he l
 health.innerHTML = `<i class="fa-solid fa-heart" style="color: #cd0e47;"></i> 0`;
 btn2.addEventListener('click', endGame);
 btn2.textContent = 'End Game';
-  
-  
 }
 
 
@@ -188,6 +275,15 @@ function endGame () {
   btn4.style.display = 'none';
   btn1.style.display = 'block';
   btn1.textContent = 'Next';
+  healthValue = 100;
+  currentHealth = 100;
+  goldValue = 0
+  savevillage = false;
+  forestcomplete = false;
+  villagecomplete = false;
+  cavescomplete = false;
+  map = false;
+  depths = false
   health.innerHTML = `<i class="fa-solid fa-heart" style="color: #cd0e47;"></i> 100`;
   currentHealth = 100;
   btn1.addEventListener('click', startstart);
@@ -216,7 +312,9 @@ gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/ABLVV
 
 function village () {
   btn2.textContent = 'Investigate the Casket';
+  btn2.addEventListener('click', casket)
   btn3.textContent = 'Focus on Cleaning';
+  btn3.addEventListener('click', clean)
   btn3.removeEventListener('click', village);
   btn2.removeEventListener('click', ancientForest);
   btn4.removeEventListener('click', desertedCaves);
@@ -234,6 +332,129 @@ Investigate the Casket: Curiosity piqued, and with Arthur's mention of valuables
 Focus on Cleaning: Remembering Arthur's request, Logan thinks it might be best to focus on cleaning the shack, avoiding any potential dangers the casket might hold..</p>`;
 gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/ABLVV87MhEeH-0WNPx4-wDUrcQ1MJG1BruFnHd1pKWYktFDgrdqnIB8K65v20sJodc0tFc6W2wiCUslXVzV2fzswC-mZsN4AwmpvwRLNC1GenJTg3QfTYkI=w2400')"
 }
+
+
+function clean () {
+  text.innerHTML = `<p>Choosing to focus on cleaning, Logan bypasses the mysterious casket. As he tidies the shack, the village's peculiar stillness grows more apparent. Hours blend into days, and Logan begins to feel a disconnection from his past, his memories fading like the setting sun. Despite completing his task, the realization that time has ensnared him comes too late. Gradually, Logan forgets his true name and the initial purpose that led him to this village, becoming another timeless resident in the eternal loop, his original intentions lost to the ages.</p>`;
+  btn3.removeEventListener('click', clean);
+  btn2.removeEventListener('click', casket);
+  btn3.style.display = 'none';
+  btn2.addEventListener('click', endGame);
+  btn2.textContent = 'End Game';
+}
+
+function casket () {
+  btn3.removeEventListener('click', clean);
+  btn2.removeEventListener('click', casket);
+  btn2.textContent = 'Vital Essence';
+  btn2.addEventListener('click', vitalEssence);
+  btn3.textContent = 'Wealth Sacrifice';
+  btn3.addEventListener('click', chaliceOfWealth)
+  btn4.style.display = 'block'
+  btn4.textContent = 'Liberation';
+  btn4.addEventListener('click', liberation);
+  text.innerHTML = `<p>
+Upon opening the casket, Logan is met with a gleaming orb that splits the room into three distinct beams of light, each leading to a different relic. The air shimmers with power, and a voice, ancient as the forest itself, lays before him his options:
+
+Orb of Vital Essence: A pulsating, emerald light surrounds the first relic, a small vial filled with a liquid that sparkles with life.
+
+Chalice of Wealth's Sacrifice: Bathed in golden radiance, the second relic beckons. This ornate chalice demands all of Logan's accumulated gold in exchange for a key—a key to an unknown treasure within the forest, possibly greater than what he sacrifices. Yet, this choice focuses on material wealth, potentially diverting him from uncovering the truth behind the village's perpetual dusk.
+
+Crystal of Liberation: The final relic, a crystal pulsing with a soft, blue light, offers the most daunting choice. The voice entreats Logan to use the crystal to shatter the village's timeless curse, freeing its inhabitants but forsaking his quest for personal gain. This path leads to no immediate reward and demands a selfless act to help those trapped in an endless cycle of non-existence, possibly the key to unraveling the village's mysteries and ending its sorrow.
+
+Each relic presents Logan with a path that tests his priorities: personal gain, pursuit of wealth, or the well-being of others. His decision will not only affect his fate but also that of the village ensnared in an ancient enchantment.</p>`
+  
+}
+
+
+
+
+
+function chaliceOfWealth () {
+  btn4.removeEventListener('click', liberation)
+  btn2.removeEventListener('click', vitalEssence)
+  btn3.removeEventListener('click', chaliceOfWealth);
+  text.innerHTML = `<p>As Logan hands over his hard-earned gold in exchange for the ornate chalice and the promised key, a sense of unease settles over him. Ignoring the plight of the village and succumbing to the allure of material wealth, he descends deeper into the forest, blinded by the gleam of gold.
+
+Upon reaching the hidden chamber, Logan finds it overflowing with treasures beyond his wildest dreams. The glimmer of gold and jewels blinds him to the consequences of his actions as he fills his pockets with riches, ignoring the nagging guilt tugging at his conscience.</p>`
+  goldValue += 2500;
+  savevillage = false;
+  villagecomplete = true;
+  gold.innerHTML = `<i class="fa-solid fa-coins" style="color: #b7961f;"></i>    ${goldValue}`
+  updateGameStateVillage()
+  
+}
+
+
+function vitalEssence () {
+  btn4.removeEventListener('click', liberation)
+  btn3.removeEventListener('click', chaliceOfWealth);
+  btn2.removeEventListener('click', vitalEssence);
+  currentHealth = 150;
+  health.innerHTML = `<i class="fa-solid fa-heart" style="color: #cd0e47;"></i> 150`;
+  text.innerHTML = `<p>The voice promises restoration and strength, offering Logan 50 health if he chooses to embrace the vial's contents. However, this choice leaves the secrets of the village and its curse unexplored, his journey inward ending with personal gain but no deeper understanding.</p>`;
+  villagecomplete = true;
+  savevillage = false;
+  updateGameStateVillage()
+}
+
+function liberation () {
+  btn4.removeEventListener('click', liberation)
+  btn3.removeEventListener('click', chaliceOfWealth);
+  btn2.removeEventListener('click', vitalEssence);
+  text.innerHTML = `<p>Logan stands before the relics, the weight of his choice pressing heavily upon him. The Orb of Vital Essence, Chalice of Wealth's Sacrifice, and Crystal of Liberation each shimmer with an allure that speaks to different facets of his heart. Yet, as the voice of the ancient forest whispers through the beams of light, Logan's gaze fixes upon the Crystal of Liberation. In that moment, the allure of personal gain and wealth fades before the echoing plea for freedom from the villagers trapped in a curse.
+
+With a steady hand, Logan reaches for the crystal. Its cool surface pulses against his skin, a heartbeat of hope for the village. He understands the path he chooses is devoid of personal glory or treasure; it is a path carved with the intention of healing and liberation.
+
+As dawn breaks, Logan stands at the edge of the village, the crystal in hand, its soft blue light mingling with the first rays of sunlight. The villagers, unaware of the impending change, go about their morning, trapped in the ceaseless cycle of dusk and dawn.
+
+Logan raises the crystal towards the sky, and with a voice firm with resolve, he recites the incantation the ancient voice had imparted to him. A beam of light erupts from the crystal, piercing the sky. The air thrums with power as the light expands, enveloping the village in a dome of pulsating energy.
+
+The villagers stop in their tracks, their eyes wide as they witness the impossible. The curse that had gripped their lives, their very existence, begins to fray at the edges. The endless cycle of non-existence they had been bound to starts to unravel, thread by thread, until with a final pulse of the crystal's light, the curse shatters.
+
+Tears of joy and disbelief mingle as the villagers embrace one another, their lives no longer bound to the whims of an ancient enchantment. Logan watches, a quiet observer to the happiness he has wrought. Though his pockets are no heavier, his heart is full, knowing he has chosen a path that has freed a village from sorrow.
+
+As he prepares to leave, a newfound respect and gratitude from the villagers in his wake, Logan realizes that some rewards cannot be measured in gold or artifacts. In choosing the well-being of others over his own gains, he has found a treasure far greater—the knowledge that one person can indeed make a difference. This act, selfless and bold, becomes the first step in unraveling the mysteries that lie beyond, with the liberated village standing as a testament to the power of choice and the strength of character.
+
+And so, Logan's journey continues, the Crystal of Liberation now a beacon of his legacy, a reminder that true liberation comes not from the relics we possess, but from the choices we make and the lives we touch.</p>`
+  
+savevillage = true;
+villagecomplete = true;
+updateGameStateVillage();
+}
+
+
+function updateGameStateVillage() {
+  // Hide all buttons by default to reset the state
+  btn2.style.display = 'none';
+  btn3.style.display = 'none';
+  btn4.style.display = 'none';
+
+  // Check which paths have been completed and update the UI accordingly
+  if (!cavescomplete) {
+    btn3.style.display = 'block';
+    btn3.textContent = 'Travel to the Deserted Caves';
+    btn3.addEventListener('click', desertedCaves);
+  }
+
+  if (!forestcomplete) {
+    btn2.style.display = 'block';
+    btn2.textContent = 'Venture to Ancient Forest';
+    btn2.addEventListener('click', ancientForest);
+  }
+
+  // If all paths are complete, offer a way to finalize the game
+  if (forestcomplete && cavescomplete && villagecomplete) {
+    btn2.style.display = 'block';
+    btn2.textContent = 'Complete Game';
+    btn2.removeEventListener('click', village); // Make sure to clean up any old listeners
+    btn2.removeEventListener('click', desertedCaves);
+    btn2.addEventListener('click', ending);
+  }
+
+}
+
+
 //vilage story
 
 
@@ -243,9 +464,23 @@ function desertedCaves () {
   btn3.removeEventListener('click', village);
   btn2.removeEventListener('click', ancientForest);
   btn4.removeEventListener('click', desertedCaves);
+  btn2.removeEventListener('click', village);
+  if (btn2.style.display = 'none') {
+    btn2.style.display = 'block';
+  }
+  if (btn3.style.display = 'none') {
+    btn3.style.display = 'block'
+  }
+  if (btn4.style.display = 'none') {
+    btn4.style.display = 'block'
+  }
+  
+  
   btn2.textContent = 'Explore the Luminous Chamber';
   btn3.textContent = 'Descend into the Depths';
+  btn3.addEventListener('click', descend);
   btn4.textContent = 'Map the Caverns for Escape Routes';
+  btn4.addEventListener('click', mapcavern)
   text.innerHTML = `<p>
 In the shadow of the western hills, Logan finds the entrance to the Deserted Caves, a network of tunnels rumored to hold ancient artifacts and untold riches. The air is cool and heavy with the scent of earth and mystery. As he ventures deeper, the light from the entrance fades, leaving him to rely on his torch to navigate the winding passages.
 
@@ -263,6 +498,124 @@ gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/ABLVV
 }
 
 
+let map = false;
+let depths = false;
+
+function lumin () {
+  btn4.removeEventListener('click', mapcavern);
+  btn3.removeEventListener('click', descend);
+  btn2.removeEventListener('click', lumin); 
+  text.innerHTML = `<p>As Logan greedily gathers the shimmering gemstones, the cavern's gentle glow intensifies, revealing the true nature of his surroundings. The crystals were not simply sources of light but the life force of the subterranean creatures that call this chamber home. With a collective hiss, the creatures emerge from the shadows, their eyes gleaming with fury at the intruder who dared disturb their sanctuary.
+
+Cornered and outnumbered, Logan's attempts to defend himself are futile against the relentless onslaught of the creatures. Their sharp claws and venomous fangs inflict grievous wounds, leaving him battered and near defeat. With the last of his strength, Logan manages to break free from the creatures' grasp and make a desperate dash towards the tunnel entrance.
+
+Despite his efforts, Logan is unable to outrun the pursuing horde. As he reaches the mouth of the tunnel, exhaustion overtakes him, and he collapses to the ground, surrounded by the creatures' menacing forms. In his final moments, he reflects on his folly, realizing too late the consequences of his greed.
+
+As darkness descends, Logan's fate is sealed, his body becoming another grim reminder of the perils that await those who seek fortune in the depths of the Luminous Chamber. </p>`
+  btn3.style.display = 'none';
+  btn4.style.display = 'none';
+  currentHealth = 0;
+  health.innerHTML = `<i class="fa-solid fa-heart" style="color: #cd0e47;"></i> ${currentHealth}`;
+  btn2.addEventListener('click', endGame);
+  btn2.textContent = 'End Game';
+}
+
+
+function descend () {
+  btn4.removeEventListener('click', mapcavern);
+  btn3.removeEventListener('click', descend);
+  text.innerHTML = `<p>Descend into the Depths: Steeling himself for the perilous descent, Logan begins his journey into the depths of the caves. With each step, the air grows colder, and the darkness more oppressive. Yet, fueled by the promise of untold riches, he presses on. As he reaches the lowest point of the caves, he discovers a chamber bathed in an eerie blue light, emanating from a mysterious artifact—a crystalline orb said to possess the power to control the elements. Ignoring the warnings of danger, Logan reaches out to claim the artifact, triggering a series of catastrophic events. The ground begins to tremble, and the chamber starts to collapse around him. Desperate to escape, Logan narrowly avoids falling debris and manages to flee the crumbling caverns, clutching the artifact tightly in his hand. However, as he emerges from the caves, he realizes that the power he sought may come at a grave cost.</p>`
+ goldValue += 3500;
+ gold.innerHTML = `<i class="fa-solid fa-coins" style="color: #b7961f;"></i>    ${goldValue}`;
+ depths = true;
+ cavescomplete = true;
+ updateGameStateCaves()
+}
+
+
+function mapcavern () {
+  btn4.removeEventListener('click', mapcavern);
+  text.innerHTML = `<p>Map the Caverns for Escape Routes: Diligently mapping his surroundings, Logan carefully navigates the labyrinthine caves, meticulously noting potential escape routes and hidden dangers. His efforts lead him to a chamber filled with ancient artifacts, each whispering tales of forgotten civilizations and lost treasures. Among the relics, Logan discovers a curious-looking amulet, adorned with strange symbols and pulsating with a faint, otherworldly glow. Sensing its significance, he adds the amulet to his collection, unaware of the darkness it carries.
+As Logan makes his way back to the entrance, he begins to feel a strange unease creeping over him. The air grows heavy, and shadows seem to dance around him, whispering sinister secrets. Suddenly, a chilling realization dawns upon him—the amulet he took holds a malevolent power, awakening ancient spirits that now hunger for his soul.
+
+With each step, the darkness closes in, and Logan finds himself ensnared in a sinister trap of his own making. Desperate to escape the grasp of the malevolent spirits, he races against time, his every move fraught with peril. In the end, as he emerges from the caves, he carries not only the relics he discovered but also the heavy burden of a debt owed to the shadows—a debt that may cost him far more than he ever imagined.</p>`;
+gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/AP1GczNSTQSglExgA6IzQ1HKiJcqe54Y6nb4r7o_zlav5F_OCZgHcuCz2uisfsiP1PT8sSJtL5nL_xVVddPVmQLiXUSd_6GA8dri86tuV7ihYkCJ-PLPfQo=w2400')";
+
+  map = true;
+  cavescomplete = true;
+  goldValue += 3500;
+  gold.innerHTML = `<i class="fa-solid fa-coins" style="color: #b7961f;"></i>    ${goldValue}`
+  updateGameStateCaves()
+}
+
+function updateGameStateCaves() {
+  // Hide all buttons by default to reset the state
+  btn2.style.display = 'none';
+  btn3.style.display = 'none';
+  btn4.style.display = 'none';
+
+  // Check which paths have been completed and update the UI accordingly
+  if (!villagecomplete) {
+    btn3.style.display = 'block';
+    btn3.textContent = 'Travel to the nearest Village';
+    btn3.addEventListener('click', village);
+  }
+
+  if (!forestcomplete) {
+    btn2.style.display = 'block';
+    btn2.textContent = 'Venture to Ancient Forest';
+    btn2.addEventListener('click', ancientForest);
+  }
+
+  // If all paths are complete, offer a way to finalize the game
+  if (forestcomplete && cavescomplete && villagecomplete) {
+    btn2.style.display = 'block';
+    btn2.textContent = 'Complete Game';
+    btn2.removeEventListener('click', village); // Make sure to clean up any old listeners
+    btn2.removeEventListener('click', desertedCaves);
+    btn2.addEventListener('click', ending);
+  }
+
+}
+
+
+function ending () {
+  btn2.removeEventListener('click', ending);
+  btn2.addEventListener('click', endGame);
+  btn3.style.display = 'none';
+  btn4.style.display = 'none';
+  //good endings
+  if (goldValue === 5000 && map && !depths && savevillage ) {
+    text.innerHTML = `<p>By choosing the depths, Logan acquires a powerful artifact that promises immense power but also poses great risks. Despite the danger, his intent to save the village prevails. Using the wealth gained from this daring expedition, Logan pays off the debt and invests in the community. The curse of the artifact is broken through a selfless act of using its power for the greater good, restoring the lighthouse and ensuring the village's prosperity. The darkness that once loomed is dispelled, and Logan is celebrated as a true hero, his legacy intertwined with the lighthouse's enduring light.</p>`;
+    gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/AP1GczNQUeSMcxj6iiC5XqXk3fmB_tZfoicyP4-U4hQ49qAHbqFNZxZh-AxTIv4uxaBRp6f19aj0jG3GjTgNliewYpRnhXNSnogFLhUwo76_rp08Qo2xBL0=w2400')";
+  }
+  
+  if (goldValue === 5000 && depths && !map && savevillage ) {
+    text.innerHTML = `<p>Logan's meticulous mapping of the caverns leads him to ancient relics, among them a sinister amulet. Despite its malevolent aura, he uses the knowledge and wealth gained to benefit the village. By choosing to save the village over succumbing to the amulet's dark allure, the curse is lifted. The village thrives, the lighthouse shines brighter than ever, and Logan finds peace, knowing he has preserved his family's legacy and protected those he holds dear.</p>`;
+    gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/AP1GczNQUeSMcxj6iiC5XqXk3fmB_tZfoicyP4-U4hQ49qAHbqFNZxZh-AxTIv4uxaBRp6f19aj0jG3GjTgNliewYpRnhXNSnogFLhUwo76_rp08Qo2xBL0=w2400')";
+  }
+  
+  if (goldValue > 5000 && depths && !map && !savevillage) {
+    text.innerHTML = `<p> Logan's venture into the depths grants him an artifact of great power and wealth beyond the necessary 5000 gold. However, his greed overshadows his duty to the village. The curse of the artifact, fueled by Logan's greed, brings ruin instead of prosperity. The lighthouse crumbles further, and the village suffers. Logan lives in isolation, haunted by his choices, a cautionary tale of greed overshadowing duty.</p>`;
+    gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/AP1GczOmxKX9enga_ntZdz3vo7BPscgoIU6Kc4hTjNi597uGT9OkRsnQvSG1ZMkNgponm2h4c0-Pk9JBL-gkh9Y110MLEKsyejI8SLjfhYUF51FOnLwTlGk=w2400')";
+  }
+  if (goldValue > 5000 && map && !depths && !savevillage) {
+    text.innerHTML = `<p>With wealth accumulated from mapping the caverns and discovering relics, including the amulet, Logan chooses personal gain over the village's welfare. The curse of the amulet intensifies, casting a shadow over the land. The lighthouse, a symbol of hope, is lost to neglect, and the village's decline is inevitable. Logan's legacy is marred by betrayal, and he is left to wander, a rich man in a broken world.</p>`;
+    gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/AP1GczOmxKX9enga_ntZdz3vo7BPscgoIU6Kc4hTjNi597uGT9OkRsnQvSG1ZMkNgponm2h4c0-Pk9JBL-gkh9Y110MLEKsyejI8SLjfhYUF51FOnLwTlGk=w2400')";
+  }
+  
+  if (goldValue === 5000 && depths && !map && !savevillage) {
+    text.innerHTML = `<p>Logan acquires the artifact and wealth from the depths, choosing neither to save the village nor to indulge in excessive greed. His focus on personal survival and power isolates him from the community. While he does not suffer the extreme consequences of greed, he lives a solitary life, disconnected from the village he could have saved. The lighthouse stands neglected, a reminder of what could have been.</p>`;
+    gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/AP1GczOmxKX9enga_ntZdz3vo7BPscgoIU6Kc4hTjNi597uGT9OkRsnQvSG1ZMkNgponm2h4c0-Pk9JBL-gkh9Y110MLEKsyejI8SLjfhYUF51FOnLwTlGk=w2400')";
+  }
+  if (goldValue === 5000 && map && !depths && !savevillage) {
+    text.innerHTML = `<p>After mapping the caverns and securing ancient treasures, Logan prioritizes his own interests, neither saving the village nor hoarding wealth. The curse of the amulet lingers, a personal burden rather than a communal disaster. He exists on the fringes, wealthy yet alone, as the village fades and the lighthouse dims. Logan's story is one of missed opportunities and solitude, a testament to the cost of indifference.</p>`;
+    gameimg.style.backgroundImage = "url('https://lh3.googleusercontent.com/pw/AP1GczOmxKX9enga_ntZdz3vo7BPscgoIU6Kc4hTjNi597uGT9OkRsnQvSG1ZMkNgponm2h4c0-Pk9JBL-gkh9Y110MLEKsyejI8SLjfhYUF51FOnLwTlGk=w2400')";
+  }
+  
+  
+  
+}
 
 
 
